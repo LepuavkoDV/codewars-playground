@@ -3,24 +3,20 @@ function isOdd(num: number): boolean {
 }
 
 export function dashatize(num: number): string {
-  if (!Number.isInteger(num) || num === 0 || (num < 0 && String(num).length === 2)) {
+  const abs = Math.abs(num);
+  if (!Number.isInteger(num) || abs === 0 || abs === 1) {
     return 'NaN';
   }
-  const arr = String(num).split('');
-  if (arr[0] === '-') {
-    delete arr[0];
+  let res = String(abs)
+    .split('')
+    .map((char: string) => (isOdd(Number(char)) ? `-${char}-` : char))
+    .join('')
+    .replaceAll('--', '-');
+  if (res[0] === '-') {
+    res = res.substring(1, res.length);
   }
-  for (let i = 0; i <= arr.length; i += 1) {
-    const val = Math.abs(Number(arr[i]));
-    if (isOdd(val)) {
-      if (i === 0) {
-        arr[i] = `${val}-`;
-      } else if (i === arr.length - 1) {
-        arr[i] = `-${val}`;
-      } else {
-        arr[i] = `-${val}-`;
-      }
-    }
+  if (res[res.length - 1] === '-') {
+    res = res.slice(0, -1);
   }
-  return `${arr.join('').replaceAll('--', '-')}`;
+  return res;
 }
