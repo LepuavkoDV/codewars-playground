@@ -1,7 +1,7 @@
 {
   "scripts": {
     "run": "npx tsx index.ts",
-    "lint": "eslint index.ts",
+    "lint": "eslint ./**/*.ts --fix",
     "test": "jest"
   },
   "dependencies": {
