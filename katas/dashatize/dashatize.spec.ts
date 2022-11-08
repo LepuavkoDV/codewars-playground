@@ -11,7 +11,7 @@ describe('dashatize', () => {
   });
   it('If n is not an integer, return the string "NaN".', () => {
     expect(dashatize(NaN)).toBe('NaN');
-    expect(dashatize(0)).toBe('NaN');
-    expect(dashatize(-1)).toBe('NaN');
+    expect(dashatize(0)).toBe('0');
+    expect(dashatize(-1)).toBe('1');
   });
 });
